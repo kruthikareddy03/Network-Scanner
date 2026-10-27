@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Port Scanner</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="brand">🛡 Net<span>Guard</span></div>
+        <div class="tag">CYBER SECURITY MINI PROJECT</div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <p class="eyebrow">NETWORK SECURITY TOOL</p>
+            <h1>Network Port Scanner</h1>
+            <p>Inspect TCP port availability on your own computer.</p>
+            <span class="local">● LOCALHOST SCANNING ONLY</span>
+        </section>
+
+        <section class="panel">
+            <h2>Configure Scan</h2>
+            <p class="muted">Enter a target and a range of ports.</p>
+
+            <form id="scanForm">
+                <label for="target">Target IP address</label>
+                <input id="target" value="127.0.0.1" required>
+
+                <div class="port-fields">
+                    <div>
+                        <label for="startPort">Start port</label>
+                        <input id="startPort" type="number"
+                               min="1" max="65535" value="79" required>
+                    </div>
+                    <div>
+                        <label for="endPort">End port</label>
+                        <input id="endPort" type="number"
+                               min="1" max="65535" value="85" required>
+                    </div>
+                </div>
+
+                <button type="submit" id="scanButton">▶ Start Scan</button>
+                <button type="button" id="resetButton" class="secondary">
+                    Reset
+                </button>
+            </form>
+
+            <p class="notice">
+                Only scan systems you own or have permission to test.
+            </p>
+            <p id="message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="stats">
+            <div class="stat">
+                <p>PORTS CHECKED</p>
+                <strong id="totalCount">—</strong>
+            </div>
+            <div class="stat">
+                <p>OPEN PORTS</p>
+                <strong class="green" id="openCount">—</strong>
+            </div>
+            <div class="stat">
+                <p>CLOSED PORTS</p>
+                <strong class="red" id="closedCount">—</strong>
+            </div>
+            <div class="stat">
+                <p>UNRESPONSIVE</p>
+                <strong class="yellow" id="unresponsiveCount">—</strong>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="results-heading">
+                <div>
+                    <h2>Scan Results</h2>
+                    <p class="muted" id="scanInfo">
+                        Run a scan to see the results.
+                    </p>
+                </div>
+                <span class="protocol">TCP</span>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PORT</th>
+                            <th>SERVICE</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                        <tr>
+                            <td colspan="3" class="empty">
+                                No scan results yet.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            Network Port Scanner · Built with Python and Flask
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
